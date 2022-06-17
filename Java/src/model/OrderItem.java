@@ -1,22 +1,21 @@
 package model;
 
 public class OrderItem {
-    private long id;
+    private Long id;
     private double price;
     private int quantity;
     private long orderId;
     private int productId;
     private String productName;
-    private double total;
 
-    public OrderItem(long id, double price, int quantity, long orderId, int productId, String productName, double total) {
+
+    public OrderItem(long id, double price, int quantity, long orderId, int productId, String productName) {
         this.id = id;
         this.price = price;
         this.quantity = quantity;
         this.orderId = orderId;
         this.productId = productId;
         this.productName = productName;
-        this.total = total;
     }
 
     public OrderItem(String record) {
@@ -26,8 +25,8 @@ public class OrderItem {
         this.quantity = Integer.parseInt(fields[2]);
         this.orderId = Long.parseLong(fields[3]);
         productId = Integer.parseInt(fields[4]);
-        productName = fields[6];
-        this.total = Double.parseDouble(fields[6]);
+        productName = fields[5];
+
     }
     public OrderItem(){
 
@@ -81,13 +80,7 @@ public class OrderItem {
         this.productName = productName;
     }
 
-    public double getTotal() {
-        return total;
-    }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
 
     @Override
     public String toString() {
@@ -96,8 +89,7 @@ public class OrderItem {
                 "," + quantity +
                 "," + orderId +
                 "," + productId +
-                "," + productName +
-                "," + total
+                "," + productName
                 ;
     }
 }

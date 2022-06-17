@@ -1,5 +1,6 @@
 package model;
 
+import java.time.Instant;
 import java.util.Objects;
 
 public class Product {
@@ -7,20 +8,40 @@ public class Product {
     private String title;
     private int quantity;
     private double price;
+    private String description;
+    private Instant createdAt;
+    private Instant updatedAt;
 
-    public Product(long id, String title, int quantity, double price) {
+    public Product(long id, String title, int quantity, double price, String description) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
         this.price = price;
+        this.description = description;
     }
 
-    public Product(String row) {
-        String[] productInformation = row.split(",");
-        this.id = Integer.parseInt(productInformation[0]);
-        this.title = productInformation[1];
-        this.price = Double.parseDouble(productInformation[2]);
-        this.quantity = Integer.parseInt(productInformation[3]);
+    public Product(long id, String title, int quantity, double price, String description, Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.title = title;
+        this.quantity = quantity;
+        this.price = price;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public static Product parse(String row) {
+        String[] fields = row.split(",");
+        long id = Long.parseLong(fields[0]);
+        String title = fields[1];
+        double price = Double.parseDouble(fields[2]);
+        int quantity = Integer.parseInt(fields[3]);
+        String description = fields[4];
+        Instant createdAt = Instant.parse(fields[5]);
+        String temp = fields[6];
+        Instant updatedAt = null;
+        if (temp != null && !temp.equals("null")) updatedAt = Instant.parse(temp);
+        return new Product(id, title, quantity, price, description, createdAt, updatedAt);
 
     }
 
@@ -56,21 +77,40 @@ public class Product {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
-        return id + "," + title + "," + price + "," + quantity;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id == product.id && Double.compare(product.price, price) == 0 && quantity == product.quantity && Objects.equals(title, product.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, price, quantity);
+        return String.format("%s,%s,%s,%s,%s,%s,%s,",
+                id,
+                title,
+                price,
+                quantity,
+                description,
+                createdAt,
+                updatedAt);
     }
 }
+

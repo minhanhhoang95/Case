@@ -3,27 +3,40 @@ package model;
 import utils.DateUtils;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order implements Serializable {
+public class Order {
     private long id;
     private String name;
     private String phone;
-
-    private Date createDate;
+    private String address;
+    private Double grandTotal;
+    private Instant createdAt;
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    public Order(long id, String name, String phone, String address) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+    }
+
 
     private Order() {
     }
 
-    public Order(String row) {
+
+    public static Order parse(String row) {
+        Order order = new Order();
         String[] oderInfo = row.split(",");
-        id = Long.parseLong(oderInfo[0]);
-        name = oderInfo[1];
-        phone = oderInfo[2];
-        createDate = DateUtils.stringToDate(oderInfo[3]);
+        order.id = Long.parseLong(oderInfo[0]);
+        order.name = oderInfo[1];
+        order.phone = oderInfo[2];
+        order.address = oderInfo[3];
+        return order;
     }
 
     public long getId() {
@@ -50,22 +63,30 @@ public class Order implements Serializable {
         this.phone = phone;
     }
 
-
-    public Date getCreateDate() {
-        return createDate;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public void setGrandTotal(Double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
-        return id +
-                "," + name +
-                "," + phone +
-                "," + DateUtils.dateToString(createDate);
-
+        return id + "," + name + "," + phone + "," + address;
     }
 
 }
