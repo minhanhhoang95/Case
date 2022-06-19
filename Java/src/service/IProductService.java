@@ -5,19 +5,30 @@ import model.Product;
 import java.util.List;
 
 public interface IProductService {
-    List<Product> getProduct();
+    List<Product> findAll();
 
     void add(Product newProduct);
 
-    Product getbyID(int id);
-
-    boolean exisById(int id);
-
     void update(Product newProduct);
 
-    boolean checkDuplicateId(int id);
+    Product findById(int id);
 
-    void removeProduct(Product product);
+    boolean exist(int id);
+
+    boolean existByName(String name);
+
+    boolean existsById(int id);
+
+    void deleteById(int id);
+
+    List<Product> findAllOrderByPriceASC();
+
+
+    List<Product> findAllOrderByPriceDESC();
+
+    List<Product> findAllOrderByNameASC();
+
+    List<Product> findAllOrderByNameDESC();
 
 
 }

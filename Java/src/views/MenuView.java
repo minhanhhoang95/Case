@@ -1,5 +1,7 @@
 package views;
 
+import utils.AppUtils;
+
 import java.util.Scanner;
 
 
@@ -47,7 +49,7 @@ public class MenuView {
                     OrderViewLauncher.run();
                     break;
                 case 4:
-//                    MenuView.exit();
+                    AppUtils.exit();
                     break;
                 default:
                     System.out.println("Wrong Input! Please enter a number !!! ");

@@ -11,8 +11,11 @@ public class Product {
     private String description;
     private Instant createdAt;
     private Instant updatedAt;
+    public Product(){
 
-    public Product(long id, String title, int quantity, double price, String description) {
+    }
+
+    public Product(long id, String title, double price,int quantity, String description) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;

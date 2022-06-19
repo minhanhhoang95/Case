@@ -1,5 +1,7 @@
 package views;
 
+import utils.AppUtils;
+
 import java.util.Scanner;
 
 public class ManagerProductView {
@@ -27,6 +29,7 @@ public class ManagerProductView {
     }
 
     public static void run() {
+        ProductView productView = new ProductView();
         while (true) {
             try {
                 menuWine();
@@ -35,19 +38,19 @@ public class ManagerProductView {
                 switch (choice) {
                     case 1:
                         System.out.println("Add Product");
-//                        productView.addNewProduct();
+                        productView.add();
                         break;
                     case 2:
                         System.out.println("Edit Product by using ID");
-//                        productView.updateProduct();
+                        productView.update();
                         break;
                     case 3:
-                        System.out.println("Show Product List");
-//                        productView.renderProduct();
+                        System.out.println("Show Wine List");
+                        productView.showProducts(InputOption.SHOW);
                         break;
                     case 4:
                         System.out.println("Remove Product by using ID");
-//                        productView.removeProduct();
+                        productView.remove();
                         break;
                     case 5:
                         System.out.println("Sort Product by using name");
@@ -58,7 +61,7 @@ public class ManagerProductView {
                         MenuView.showMainMenu();
                         break;
                     case 0:
-//                        MenuView.exit();
+                        AppUtils.exit();
                         break;
                     default:
                         System.err.println("Wrong input. Try again.");
@@ -68,7 +71,8 @@ public class ManagerProductView {
             }
         }
     }
-    public static void menuSort(){
+
+    public static void menuSort() {
         System.out.print("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗" +
                 "\n║                                                                                                  ║" +
                 "\n║                                          [Menu Sort]                                             ║" +
@@ -84,7 +88,9 @@ public class ManagerProductView {
                 "\n")
         ;
     }
+
     public static void runSort() {
+        ProductView productView = new ProductView();
         do {
             menuSort();
             try {
@@ -94,26 +100,29 @@ public class ManagerProductView {
                     case 1:
                         System.out.println("Sort Ascending By Name");
 //                        hàm sort tăng dần theo tên
+                        productView.sortByNameOrderByASC();
                         break;
                     case 2:
                         System.out.println("Sort Descending By Name");
 //                        hàm sort giảm dần theo tên
+                        productView.sortByNameOrderByDESC();
                         break;
                     case 3:
                         System.out.println("Sort Ascending By Price");
 //                        hàm sort tăng dần theo Price
+                        productView.sortByPriceOrderByASC();
                         break;
                     case 4:
                         System.out.println("Sort Descending By Price");
 //                        hàm sort giảm dần theo Price
-
+                        productView.sortByPriceOrderByDESC();
                         break;
                     case 5:
                         System.out.println("Come Back");
                         ManagerProductView.run();
                         break;
                     case 0:
-//                        MenuView.exit();
+                        AppUtils.exit();
                         break;
                     default:
                         System.out.println("Wrong choice ! Try again !!!");

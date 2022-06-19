@@ -1,29 +1,34 @@
 package service;
 
+import model.Product;
 import model.User;
 
 import java.util.List;
 
 public interface IUserService {
-    List<User> getUser();
+    List<User> findAll();
 
-    User loginAdmin(String username, String password);
+    User adminLogin(String username, String password);
 
     void add(User newUser);
 
     void update(User newUser);
+     void deleteById(int id);
+    boolean existById(int id);
 
-    boolean exist(long id);
+    boolean existsByEmail(String email);
 
-    boolean checkDuplicateEmail(String email);
+    boolean existsByPhone(String phone);
 
-    boolean checkDuplicatePhone(String phone);
+    boolean existsByUsername(String userName);
 
-    boolean checkDuplicateUserName(String userName);
+    User findById(int id);
+    List<User> SortByNameASC();
 
-    boolean checkDuplicateId(long id);
 
-    User getUserById(long id);
+    List<User> SortByNameDESC();
 
-    boolean existById(long id);
+    List<User> SortByIDASC();
+
+    List<User> SortByIDDESC();
 }

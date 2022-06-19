@@ -1,9 +1,12 @@
 package views;
 
+import utils.AppUtils;
+
 import java.util.Scanner;
 
 public class ManagerUserView {
     static Scanner sc = new Scanner(System.in);
+
 
     public static void menuUser() {
         System.out.print("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗" +
@@ -26,6 +29,7 @@ public class ManagerUserView {
     }
 
     public static void run() {
+        UserView userView = new UserView();
         do {
             menuUser();
             try {
@@ -34,18 +38,19 @@ public class ManagerUserView {
                 switch (number) {
                     case 1:
                         System.out.println("Add User");
-//                        UserView.addUser();
+                        userView.addUser();
                         break;
                     case 2:
                         System.out.println("Update User");
-//                        UserView.updateUser();
+                        userView.updateUser();
                         break;
                     case 3:
                         System.out.println("Show Users List");
-//                        UserView.renderUser();
+                        userView.showUser(InputOption.SHOW);
                         break;
                     case 4:
                         System.out.println("Remove Users");
+                        userView.Remove();
                         break;
                     case 5:
                         System.out.println("Sort Users");
@@ -56,7 +61,7 @@ public class ManagerUserView {
                         MenuView.showMainMenu();
                         break;
                     case 0:
-//                        MenuView.exit();
+                        AppUtils.exit();
                         break;
                     default:
                         System.out.println("Wrong choice ! Try again !!!");
@@ -88,6 +93,7 @@ public class ManagerUserView {
     }
 
     public static void runSortUser() {
+        UserView userView = new UserView();
         do {
             menuSortUser();
             try {
@@ -97,26 +103,29 @@ public class ManagerUserView {
                     case 1:
                         System.out.println("Sort Ascending By Name");
 //                        hàm sort tăng dần theo tên
+                        userView.sortByNameByASC();
                         break;
                     case 2:
                         System.out.println("Sort Descending By Name");
 //                        hàm sort giảm dần theo tên
+                        userView.sortByNameByDESC();
                         break;
                     case 3:
                         System.out.println("Sort Ascending By ID");
 //                        hàm sort tăng dần theo ID
+                        userView.sortByIdByASC();
                         break;
                     case 4:
                         System.out.println("Sort Descending By ID");
 //                        hàm sort giảm dần theo ID
-
+                        userView.sortByIdByDESC();
                         break;
                     case 5:
                         System.out.println("Come Back");
                         ManagerUserView.run();
                         break;
                     case 0:
-//                        MenuView.exit();
+                        AppUtils.exit();
                         break;
                     default:
                         System.out.println("Wrong choice ! Try again !!!");

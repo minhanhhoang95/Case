@@ -22,11 +22,11 @@ public class User {
     }
 
 
-    public User(long id, String username, String password, String fullname, String phone, String address, String email, Role role) {
+    public User(long id, String username, String password, String fullName, String phone, String address, String email, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.fullName = fullname;
+        this.fullName = fullName;
         this.phone = phone;
         this.address = address;
         this.email = email;

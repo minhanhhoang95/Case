@@ -18,7 +18,7 @@ public class CSVUtils {
             throw new IllegalArgumentException(path + "invalid");
         }
     }
-public static List<String> readData(String path) throws IllegalAccessException {
+public static List<String> readData(String path)  {
         try {
             return Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
