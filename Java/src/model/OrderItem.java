@@ -9,7 +9,7 @@ public class OrderItem {
     private String productName;
 
 
-    public OrderItem(long id, double price, int quantity, long orderId, int productId, String productName) {
+    public OrderItem(long id, double price, int quantity, long orderId, int productId, String productName,double total) {
         this.id = id;
         this.price = price;
         this.quantity = quantity;

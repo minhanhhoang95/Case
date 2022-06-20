@@ -39,13 +39,35 @@ public class UserService implements IUserService {
     public User adminLogin(String username, String password) {
         List<User> users = findAll();
         for (User user : users) {
-            if (user.getFullName().equals(username) && user.getPassword().equals(password)
-                    && user.getRole().equals(Role.ADMIN)) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 return user;
             }
+//            if (user.getUsername().equals(username) && user.getPassword().equals(password)
+//                    && user.getRole().equals(Role.ADMIN)) {
+//                return user;
+//            }
+//            if (user.getUsername().equals(username) && user.getPassword().equals(password)
+//                    && user.getRole().equals(Role.USER)) {
+//                return user;
+//            }
+
         }
         return null;
     }
+
+//    @Override
+//    public User UserLogin(String username, String password) {
+//        List<User> users = findAll();
+//        for (User user : users) {
+//            if (user.getUsername().equals(username) && user.getPassword().equals(password)
+//                    && user.getRole().equals(Role.USER)) {
+//                return user;
+//            }
+//
+//        }
+//        return null;
+//    }
+
 
     @Override
     public void add(User newUser) {
@@ -141,7 +163,8 @@ public class UserService implements IUserService {
         }
         return null;
     }
-   public List<User> SortByNameASC(){
+
+    public List<User> SortByNameASC() {
         List<User> users = new ArrayList<>(findAll());
         users.sort(new Comparator<User>() {
             @Override
@@ -164,33 +187,33 @@ public class UserService implements IUserService {
         return users;
     }
 
-   public List<User> SortByIDASC(){
-       List<User> users = new ArrayList<>(findAll());
-       users.sort(new Comparator<User>() {
-           @Override
-           public int compare(User o1, User o2) {
-               double result = o1.getId() - o2.getId();
-               if (result == 0)
-                   return 0;
-               return result > 0 ? 1 : -1;
-           }
-       });
+    public List<User> SortByIDASC() {
+        List<User> users = new ArrayList<>(findAll());
+        users.sort(new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                double result = o1.getId() - o2.getId();
+                if (result == 0)
+                    return 0;
+                return result > 0 ? 1 : -1;
+            }
+        });
 
-       return users;
+        return users;
     }
 
-   public List<User> SortByIDDESC(){
-       List<User> users = new ArrayList<>(findAll());
-       users.sort(new Comparator<User>() {
-           @Override
-           public int compare(User o1, User o2) {
-               double result = o2.getId() - o1.getId();
-               if (result == 0)
-                   return 0;
-               return result > 0 ? 1 : -1;
-           }
-       });
+    public List<User> SortByIDDESC() {
+        List<User> users = new ArrayList<>(findAll());
+        users.sort(new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                double result = o2.getId() - o1.getId();
+                if (result == 0)
+                    return 0;
+                return result > 0 ? 1 : -1;
+            }
+        });
 
-       return users;
-   }
+        return users;
+    }
 }

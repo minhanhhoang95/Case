@@ -52,7 +52,7 @@ public class UserView {
                 String email = inputEmail();
                 String address = inputAddress(InputOption.ADD);
 
-                User user = new User(id, username, password, fullName, phone, email, address, Role.USER);
+                User user = new User(id, username, password, fullName, phone, address,email,  Role.USER);
                 setRole(user);
                 userService.add(user);
                 System.out.println("Added success!");

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class ValidateUtils {
     public static final String PASSWORD_REGEX = "^([a-zA-Z0-9]{8,}$)";// >8 gồm chữ vào số
     public static final String NAME_REGEX = "^([A-Z]+[a-z]*[ ]?)+$";//chữ Hoa đầu tiên
-    public static final String PHONE_REGEX = "^[0][1-9][0-9]{8,9}$";//số 0 đầu số thứ 2 lớn hơn 0
+    public static final String PHONE_REGEX = "^[0][1-9][0-9]{8}$";//số 0 đầu số thứ 2 lớn hơn 0
     public static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$";//có @
     public static final String USERNAME_PATTERN = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";//>8 ko kí tự đặc biệt
 

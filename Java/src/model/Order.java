@@ -13,11 +13,11 @@ public class Order {
     private Instant createdAt;
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Order(long id, String name, String phone, String address) {
+    public Order(long id, String name, String phone) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.address = address;
+
     }
 
 

@@ -4,9 +4,8 @@ import utils.AppUtils;
 
 import java.util.Scanner;
 
-public class OrderViewLauncher {
-
-    public static void menuOrder() {
+public class MenuUser {
+    public static void menuOrderUser() {
 
         System.out.print("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗" +
                 "\n║                                                                                                  ║" +
@@ -15,7 +14,6 @@ public class OrderViewLauncher {
                 "\n║                                                                                                  ║" +
                 "\n║                               ■  [1]      Add Order                                              ║" +
                 "\n║                               ■  [2]      Show Order                                             ║" +
-                "\n║                               ■  [3]      Come Back                                              ║" +
                 "\n║                               ■  [0]      Exit                                                   ║" +
                 "\n║                                                                                                  ║" +
                 "\n╚══════════════════════════════════════════════════════════════════════════════════════════════════╝" +
@@ -27,7 +25,7 @@ public class OrderViewLauncher {
         OrderView orderView = new OrderView();
         while (true) {
             try {
-                menuOrder();
+                menuOrderUser();
                 System.out.println(" Enter your choice: :");
                 int option = Integer.parseInt(sc.nextLine());
                 switch (option) {
@@ -36,9 +34,6 @@ public class OrderViewLauncher {
                         break;
                     case 2:
                         orderView.showAllOrder();
-                        break;
-                    case 3:
-                        MenuView.showMainMenu();
                         break;
                     case 0:
                         AppUtils.exit();

@@ -18,7 +18,7 @@ public class ProductView {
     }
 
     public void showProducts(InputOption inputOption) {
-        System.out.println("════════════════════════════════════════════════ Wine List ════════════════════════════════════════════════");
+        System.out.println("════════════════════════════════════════════════════════ Wine List ════════════════════════════════════════════════════════");
         System.out.printf("%-15s %-30s %-25s %-10s %-20s %-20s %-20s\n", "Id", "Wine Name ", "Price", "Quantity", "Date Created", "Date Edit", "Description");
         for (Product product : productService.findAll()) {
             System.out.printf("%-15d %-30s %-25s %-10d %-20s %-20s %-20s\n",
@@ -31,10 +31,26 @@ public class ProductView {
                     product.getDescription()
             );
         }
-        System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         if (inputOption == InputOption.SHOW) {
             AppUtils.isRetry(InputOption.SHOW);
         }
+    }
+    public void showProductsClone() {
+        System.out.println("════════════════════════════════════════════════════════ Wine List ════════════════════════════════════════════════════════");
+        System.out.printf("%-15s %-30s %-25s %-10s %-20s %-20s %-20s\n", "Id", "Wine Name ", "Price", "Quantity", "Date Created", "Date Edit", "Description");
+        for (Product product : productService.findAll()) {
+            System.out.printf("%-15d %-30s %-25s %-10d %-20s %-20s %-20s\n",
+                    product.getId(),
+                    product.getTitle(),
+                    AppUtils.doubleToVND(product.getPrice()),
+                    product.getQuantity(),
+                    InstantUtils.instantToString(product.getCreatedAt()),
+                    product.getUpdatedAt() == null ? "" : InstantUtils.instantToString(product.getUpdatedAt()),
+                    product.getDescription()
+            );
+        }
+        System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
     }
 
     public void add() {
@@ -60,9 +76,9 @@ public class ProductView {
                     "\n║                                                                               ║" +
                     "\n║                                [Edit Product]                                 ║" +
                     "\n║                                                                               ║" +
-                    "\n║                             ■  [1]   Edit Name                                ║" +
+                    "\n║                             ■  [1]   Edit Title                               ║" +
                     "\n║                             ■  [2]   Edit Quantity                            ║" +
-                    "\n║                             ■  [3]   Edit Address                             ║" +
+                    "\n║                             ■  [3]   Edit Price                               ║" +
                     "\n║                             ■  [4]   Come Back                                ║" +
                     "\n║                             ■  [0]   Exit                                     ║" +
                     "\n║                                                                               ║" +

@@ -10,6 +10,7 @@ public interface IUserService {
 
     User adminLogin(String username, String password);
 
+//    User UserLogin(String username, String password);
     void add(User newUser);
 
     void update(User newUser);
