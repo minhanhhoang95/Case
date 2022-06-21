@@ -53,4 +53,8 @@ public class OrderViewLauncher {
 
         }
     }
+
+//    public static void main(String[] args) {
+//        OrderViewLauncher.run();
+//    }
 }
