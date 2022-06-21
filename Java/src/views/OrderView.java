@@ -24,16 +24,17 @@ public class OrderView {
     }
 
     public boolean checkQuantityWine(Product product, int quantity) {
-        if (quantity <= product.getQuantity())
+        if (quantity <= product.getQuantity()) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public OrderItem addOrderItem(long orderId) {
 
 //        OrderItem  orderItem = (OrderItem) orderItems;
-        List<OrderItem> orderItems = new ArrayList<>();
+//        List<OrderItem> orderItems = new ArrayList<>();
         do {
             try {
                 oderItemService.findAll();
@@ -68,16 +69,14 @@ public class OrderView {
                 int currentQuantity = oldQuantity - quantity;
                 product.setQuantity(currentQuantity);
                 OrderItem orderItem = new OrderItem(id, price, quantity, orderId, wineId, wineName, total);
-                orderItems.add(orderItem);
+//                orderItems.add(orderItem);
 
                 return orderItem;
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Incorrect! Please Try Again!!");
             }
-        }while (true);
-
-
+        } while (true);
 
 
     }
@@ -161,7 +160,7 @@ public class OrderView {
             System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════");
             System.out.println("════════════════════════════════════════════════ Bar DeBay ════════════════════════════════════════════════");
             System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════");
-            boolean is = true ;
+            boolean is = true;
             do {
                 System.out.println("Press 'q' to go back\t|\t press 't' to exit the program");
                 System.out.print(" ⭆ ");
@@ -218,7 +217,7 @@ public class OrderView {
             System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════ ");
             System.out.println("════════════════════════════════════════════════ Bar DeBay ════════════════════════════════════════════════ ");
             System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════ ");
-             boolean is = true ;
+            boolean is = true;
             do {
                 System.out.println("Press 'q' to go back\t|\t press 't' to exit the program");
                 System.out.print(" ⭆ ");

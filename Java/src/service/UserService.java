@@ -1,7 +1,5 @@
 package service;
 
-import model.Product;
-import model.Role;
 import model.User;
 import utils.CSVUtils;
 
@@ -81,18 +79,25 @@ public class UserService implements IUserService {
     public void update(User newUser) {
         List<User> users = findAll();
         for (User user : users) {
-            if (user.getId() == newUser.getId()) {
+            if (user.getId().equals(newUser.getId()) ) {
                 String fullName = newUser.getFullName();
                 if (fullName != null && !fullName.isEmpty()) {
                     user.setFullName(fullName);
+
                 }
                 String phone = newUser.getPhone();
                 if (phone != null && !phone.isEmpty()) {
                     user.setPhone(phone);
+//                    user.setUpdatedAt(Instant.now());
+//                    CSVUtils.writeData(PATH, users);
+//                    break;
                 }
                 String address = newUser.getAddress();
                 if (address != null && !address.isEmpty()) {
                     user.setAddress(address);
+//                    user.setUpdatedAt(Instant.now());
+//                    CSVUtils.writeData(PATH, users);
+//                    break;
                 }
                 user.setUpdatedAt(Instant.now());
                 CSVUtils.writeData(PATH, users);
@@ -102,10 +107,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         List<User> users = findAll();
-
-        //class vo danh
+        //vô danh
         users.removeIf(new Predicate<User>() {
             @Override
             public boolean test(User user) {
@@ -116,7 +120,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean existById(int id) {
+    public boolean existById(long id) {
         return findById(id) != null;
     }
 
@@ -154,7 +158,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(long id) {
         List<User> users = findAll();
         for (User user : users) {
             if (user.getId() == id) {

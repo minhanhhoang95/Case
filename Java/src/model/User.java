@@ -151,8 +151,8 @@ public class User {
                 password,
                 fullName,
                 phone,
-                email,
                 address,
+                email,
                 role,
                 createdAt,
                 updatedAt

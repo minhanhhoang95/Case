@@ -11,15 +11,15 @@ public interface IProductService {
 
     void update(Product newProduct);
 
-    Product findById(int id);
+    Product findById(long id);
 
-    boolean exist(int id);
+    boolean exist(long id);
 
     boolean existByName(String name);
 
-    boolean existsById(int id);
+    boolean existsById(long id);
 
-    void deleteById(int id);
+    void deleteById(long id);
 
     List<Product> findAllOrderByPriceASC();
 

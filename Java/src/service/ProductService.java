@@ -23,6 +23,7 @@ public class ProductService implements IProductService {
         return instance;
     }
 
+    @Override
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         List<String> records = CSVUtils.readData(PATH);
@@ -49,13 +50,15 @@ public class ProductService implements IProductService {
                 if (title != null && !title.isEmpty()) {
                     product.setTitle(title);
                 }
-                Integer quantity = newProduct.getQuantity();
-                if (quantity != null) {
-                    product.setQuantity(quantity);
-                }
-                Double price = newProduct.getPrice();
-                if (price != null) {
+                double price = newProduct.getPrice();
+                if (price != 0) {
                     product.setPrice(price);
+
+                }
+                int quantity = newProduct.getQuantity();
+                if (quantity != 0) {
+                    product.setQuantity(quantity);
+
                 }
                 String description = newProduct.getDescription();
                 if (description != null && !description.isEmpty()) {
@@ -68,7 +71,8 @@ public class ProductService implements IProductService {
         }
     }
 
-    public Product findById(int id) {
+    @Override
+    public Product findById(long id) {
         List<Product> products = findAll();
         for (Product product : products) {
             if (product.getId() == id) {
@@ -79,10 +83,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean exist(int id) {
+    public boolean exist(long id) {
         return findById(id) != null;
     }
 
+    @Override
     public boolean existByName(String name) {
         List<Product> products = findAll();
         for (Product product : products) {
@@ -93,7 +98,8 @@ public class ProductService implements IProductService {
         return false;
     }
 
-    public boolean existsById(int id) {
+    @Override
+    public boolean existsById(long id) {
         List<Product> products = findAll();
         for (Product product : products) {
             if (product.getId() == id) {
@@ -103,7 +109,8 @@ public class ProductService implements IProductService {
         return false;
     }
 
-    public void deleteById(int id) {
+    @Override
+    public void deleteById(long id) {
         List<Product> products = findAll();
         products.removeIf(new Predicate<Product>() {
             @Override
@@ -145,7 +152,9 @@ public class ProductService implements IProductService {
 
         return products;
     }
-    public List<Product> findAllOrderByNameASC(){
+
+    @Override
+    public List<Product> findAllOrderByNameASC() {
         List<Product> products = new ArrayList<>(findAll());
         products.sort(new Comparator<Product>() {
             @Override
@@ -155,8 +164,9 @@ public class ProductService implements IProductService {
         });
         return products;
     }
+
     @Override
-    public List<Product> findAllOrderByNameDESC(){
+    public List<Product> findAllOrderByNameDESC() {
         List<Product> products = new ArrayList<>(findAll());
         products.sort(new Comparator<Product>() {
             @Override

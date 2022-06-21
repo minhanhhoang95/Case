@@ -21,15 +21,23 @@ public class UserView {
 
     public void showUser(InputOption inputOption) {
         System.out.println("════════════════════════════════════════════════ User List ════════════════════════════════════════════════");
-        System.out.printf("%-15s %-20s %-15s %-20s %-20s %-10s %-20s %-20s \n", "Id", "Name", "Phone", "Address", "Email", "User", "Date Created", "Date Edit");
+        System.out.printf("%-15s %-20s %-15s %-20s %-20s %-10s %-20s %-20s \n",
+                "Id"
+                , "Name"
+                , "Phone"
+                , "Email"
+                , "Address"
+                , "User"
+                , "Date Created"
+                , "Date Edit");
         List<User> users = userService.findAll();
         for (User user : users) {
             System.out.printf("%-15s %-20s %-15s %-20s %-20s %-10s %-20s %-20s \n",
                     user.getId(),
                     user.getFullName(),
                     user.getPhone(),
-                    user.getAddress(),
                     user.getEmail(),
+                    user.getAddress(),
                     user.getRole(),
                     InstantUtils.instantToString(user.getCreatedAt()),
                     user.getUpdatedAt() == null ? "" : InstantUtils.instantToString(user.getUpdatedAt())
@@ -49,10 +57,11 @@ public class UserView {
                 String password = inputPassword();
                 String fullName = inputFullName(InputOption.ADD);
                 String phone = inputPhone(InputOption.ADD);
-                String email = inputEmail();
                 String address = inputAddress(InputOption.ADD);
+                String email = inputEmail();
 
-                User user = new User(id, username, password, fullName, phone, address,email,  Role.USER);
+
+                User user = new User(id, username, password, fullName, phone, address, email, Role.USER);
                 setRole(user);
                 userService.add(user);
                 System.out.println("Added success!");
@@ -68,7 +77,7 @@ public class UserView {
         do {
             try {
                 showUser(InputOption.UPDATE);
-                int id = inputId(InputOption.UPDATE);
+                long id = inputId(InputOption.UPDATE);
                 System.out.print("╔═══════════════════════════════════════════════════════════════════════════════╗" +
                         "\n║                                                                               ║" +
                         "\n║                                   [Edit User]                                 ║" +
@@ -85,7 +94,7 @@ public class UserView {
 
                 int option = AppUtils.retryChoose(0, 4);
                 User newUser = new User();
-                newUser.setId((long) id);
+                newUser.setId(id);
                 switch (option) {
                     case 1:
                         String Name = inputFullName(InputOption.UPDATE);
@@ -118,7 +127,7 @@ public class UserView {
 
     public void Remove() {
         showUser(InputOption.DELETE);
-        int id;
+        long id;
         while (!UserService.getInstance().existById(id = inputId(InputOption.DELETE))) {
             System.out.println("Can't find User item to remove");
             System.out.println("Press 'y' to add more \t|\t 'q' to come back \t|\t 't' to exit the program");
@@ -171,6 +180,7 @@ public class UserView {
                 break;
             case 2:
                 user.setRole(Role.ADMIN);
+                break;
             default:
                 System.out.println("Syntax error! Please re-enter");
                 setRole(user);
@@ -178,8 +188,8 @@ public class UserView {
 
     }
 
-    private int inputId(InputOption option) {
-        int id;
+    private long inputId(InputOption option) {
+        long id;
         switch (option) {
             case ADD:
                 System.out.println("Enter Id : ");
@@ -341,17 +351,21 @@ public class UserView {
             AppUtils.isRetry(InputOption.SHOW);
         }
     }
+
     public void sortByNameByASC() {
         showUserSort(InputOption.SHOW, userService.SortByNameASC());
     }
-    public void sortByNameByDESC(){
-        showUserSort(InputOption.SHOW,userService.SortByNameDESC());
+
+    public void sortByNameByDESC() {
+        showUserSort(InputOption.SHOW, userService.SortByNameDESC());
     }
-    public void sortByIdByASC(){
-        showUserSort(InputOption.SHOW,userService.SortByIDASC());
+
+    public void sortByIdByASC() {
+        showUserSort(InputOption.SHOW, userService.SortByIDASC());
     }
-    public void sortByIdByDESC(){
-        showUserSort(InputOption.SHOW,userService.SortByIDDESC());
+
+    public void sortByIdByDESC() {
+        showUserSort(InputOption.SHOW, userService.SortByIDDESC());
     }
 
 }

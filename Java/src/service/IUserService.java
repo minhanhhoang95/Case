@@ -1,6 +1,5 @@
 package service;
 
-import model.Product;
 import model.User;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public interface IUserService {
     void add(User newUser);
 
     void update(User newUser);
-     void deleteById(int id);
-    boolean existById(int id);
+     void deleteById(long id);
+    boolean existById(long id);
 
     boolean existsByEmail(String email);
 
@@ -23,7 +22,7 @@ public interface IUserService {
 
     boolean existsByUsername(String userName);
 
-    User findById(int id);
+    User findById(long id);
     List<User> SortByNameASC();
 
 
